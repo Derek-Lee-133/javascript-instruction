@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futre Value</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function calculateFutureValue(initInvest, monthlyInv, annInterest, numYears) {
+
+            let futureValue = initInvest;
+            for (let i = 1; i <= (numYears*12); i++) {
+                futureValue = (futureValue + monthlyInv) * (1 + annInterest / 12 / 100);
+
+            }
+           // return Number.parseFloat(futureValue).toFixed(2);
+           return ("$" + futureValue.toFixed(2));
+        }
+       
+        function calculate() {
+            let initInvest = parseFloat(document.getElementById("initInvest").value);
+            let monthlyInvest = parseFloat(document.getElementById("monthlyInvest").value);
+            let annualInterest = parseFloat(document.getElementById("annualInterest").value);
+            let numYears = parseFloat(document.getElementById("numYears").value);
+            console.log("button clicked", initInvest, monthlyInvest, annualInterest, numYears);
+          //  console.log(investments);
+            let futureValue = calculateFutureValue(initInvest, monthlyInvest, annualInterest, numYears);
+            document.getElementById("futureValue").innerText = futureValue;
+
+           // let investments = [];
+
+            //investments.push(Number(initInvest,monthlyInvest,annualInterest,numYears,));
+        }
+       
+
+        
+    </script>
+</head>
+<body>
+Initial investment: <input type="number" id="initInvest"><br>
+Monthly investment: <input type="number" id="monthlyInvest"><br>
+Annual interest rate: <input type="number" id="annualInterest"><br>
+Number of years: <input type="number" id="numYears"><br>
+<button onclick="calculate()">Calculate</button>
+<br>
+Future value: <span  id="futureValue"></span>
+
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Init</th>
+            <th>Month</th>
+            <th>APR</th>
+            <th>Num Years</th>
+            <th>Future Value</th>
+        <tr>
+    </thead>
+    <tbody id="history">
+    </tbody>
+</table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+
+</html>
